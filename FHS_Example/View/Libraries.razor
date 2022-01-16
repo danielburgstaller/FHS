@@ -1,0 +1,42 @@
+﻿@using FHS_Example.Service
+<h3>Libraries</h3>
+
+
+@if (librariesVM.libraries == null)
+{
+    <p>Loading .... </p>
+}
+else
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (LibraryDTO dto in librariesVM.libraries)
+            {
+                <tr>
+                    <td>@dto.name</td>
+                    <td>@dto.latest</td>
+                    <td><button @onclick="(() =>  {librariesVM.Open(dto); } )">open</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @foreach (LibraryDTO dto in librariesVM.libraries)
+    {
+        <div>
+            <p>Name: @dto.name</p>
+            <p>
+                latest:
+                <a href=@dto.latest>latest</a>
+            </p>
+        </div>
+    }
+
+}
